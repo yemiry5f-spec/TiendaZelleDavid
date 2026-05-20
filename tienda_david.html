@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productos David Antonio — Camagüey</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lato', sans-serif; background: #f5f5f0; color: #1a1a1a; }
+
+  .store { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+  .hero {
+    background: #1a3a1a;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-radius: 16px;
+    margin-bottom: 2.5rem;
+    animation: fadeDown 0.6s ease both;
+  }
+  .hero-logo { font-size: 0.85rem; letter-spacing: 4px; color: #a8d87a; font-weight: 700; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #ffffff; line-height: 1.2; margin-bottom: 0.75rem; }
+  .hero-sub { font-size: 0.9rem; color: #c8ddb0; letter-spacing: 1px; margin-bottom: 1.5rem; }
+  .trust-bar { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .trust-item { display: flex; align-items: center; gap: 6px; color: #a8d87a; font-size: 0.82rem; }
+  .trust-item svg { width: 16px; height: 16px; stroke: #a8d87a; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+  .section-label {
+    font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase;
+    color: #888; font-weight: 700; margin-bottom: 1rem; padding-left: 4px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 14px;
+    margin-bottom: 2.5rem;
+  }
+
+  .card {
+    background: #ffffff;
+    border: 1px solid #e8e8e0;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeUp 0.5s ease both;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #3B6D11;
+    box-shadow: 0 8px 24px rgba(26,58,26,0.12);
+  }
+  .img-wrap {
+    width: 100%; height: 145px; overflow: hidden;
+    background: #f0f0eb;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+  .card:hover .img-wrap img { transform: scale(1.05); }
+  .card-body { padding: 10px 12px 13px; }
+  .card-name { font-weight: 700; font-size: 0.87rem; color: #1a1a1a; line-height: 1.3; margin-bottom: 4px; }
+  .card-desc { font-size: 0.74rem; color: #666; line-height: 1.45; margin-bottom: 9px; }
+  .card-tag {
+    display: inline-block; font-size: 0.69rem;
+    background: #EAF3DE; color: #27500A;
+    padding: 3px 9px; border-radius: 20px; font-weight: 700;
+  }
+  .new-badge {
+    display: inline-block; font-size: 0.65rem;
+    background: #FAEEDA; color: #633806;
+    padding: 2px 7px; border-radius: 20px; font-weight: 700;
+    margin-left: 4px; vertical-align: middle;
+  }
+
+  hr.divider { border: none; border-top: 1px solid #e8e8e0; margin: 0.5rem 0 2rem; }
+
+  .promise-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin-bottom: 2.5rem;
+  }
+  .promise-item {
+    background: #ffffff; border: 1px solid #e8e8e0;
+    border-radius: 12px; padding: 1.1rem; text-align: center;
+  }
+  .promise-item svg { width: 24px; height: 24px; stroke: #3B6D11; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; display: block; margin: 0 auto 8px; }
+  .promise-title { font-size: 0.82rem; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+  .promise-desc { font-size: 0.72rem; color: #666; line-height: 1.4; }
+
+  .cta-box {
+    background: #1a3a1a; border-radius: 16px;
+    padding: 2rem 1.5rem; text-align: center;
+  }
+  .cta-box h3 { font-family: 'Playfair Display', serif; color: #ffffff; font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .cta-box p { color: #c8ddb0; font-size: 0.88rem; margin-bottom: 1.25rem; }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px; border-radius: 30px;
+    font-size: 0.9rem; font-weight: 700; text-decoration: none;
+    margin: 5px; transition: opacity 0.2s ease, transform 0.15s ease;
+    color: #fff;
+  }
+  .cta-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+  .cta-btn.facebook { background: #1877F2; }
+  .cta-btn.zelle { background: #6B3FA0; }
+  .cta-btn svg { width: 18px; height: 18px; fill: white; flex-shrink: 0; }
+
+  .footer { text-align: center; margin-top: 2.5rem; color: #999; font-size: 0.78rem; }
+
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: 1.6rem; }
+    .trust-bar { gap: 0.8rem; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="store">
+
+  <div class="hero">
+    <div class="hero-logo">&#127807; Productos frescos</div>
+    <div class="hero-title">Todo lo que tu familia<br>necesita, en un solo lugar</div>
+    <div class="hero-sub">Camagüey &middot; Entrega a domicilio &middot; Pago por Zelle</div>
+    <div class="trust-bar">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Productos garantizados
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Entrega rápida
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Clientes satisfechos
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Carnes y proteínas</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/lomo_cerdo.jpg" alt="Lomo de cerdo deshuesado"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🥩</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Lomo de cerdo deshuesado</div>
+        <div class="card-desc">Congelado, importado. Listo para cocinar.</div>
+        <span class="card-tag">Por libra</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/pollo_perdue.jpg" alt="Pollo Perdue"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🍗</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Pollo Perdue</div>
+        <div class="card-desc">Cuartos de pierna. Sin antibióticos. 10 lb.</div>
+        <span class="card-tag">Paquete 10 lb</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/pechuga_pollo.jpg" alt="Pechuga de pollo"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🍗</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Pechuga de pollo</div>
+        <div class="card-desc">Sin hueso, sin piel. Congelada. 2 kg.</div>
+        <span class="card-tag">Paquete 2 kg</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/jamon_bravo.jpg" alt="Jamón Bravo"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🥩</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Jamón Bravo</div>
+        <div class="card-desc">Cárnico hispano-cubano. Sin gluten. 2 kg.</div>
+        <span class="card-tag">Paquete 2 kg</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/picadillo_pollo.jpg" alt="Picadillo de pollo"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🍖</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Picadillo de pollo</div>
+        <div class="card-desc">Carne mecánica sazonada. 400 g.</div>
+        <span class="card-tag">Paquete 400 g</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/huevos.jpg" alt="Huevos frescos"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🥚</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Huevos frescos</div>
+        <div class="card-desc">Frescos y seleccionados.</div>
+        <span class="card-tag">Cartón 30 ud</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Conservas y enlatados</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/sardinas.jpg" alt="Sardinas San Avellino"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🐟</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Sardinas San Avellino</div>
+        <div class="card-desc">En aceite vegetal. Halal. Omega-3.</div>
+        <span class="card-tag">Lata 125 g</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/atun.jpg" alt="Atún Micas"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🐟</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Atún en aceite</div>
+        <div class="card-desc">Atún Micas en aceite vegetal. Rico en omegas.</div>
+        <span class="card-tag">Lata</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Aceites y granos</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/aceite.jpg" alt="Aceite La Reina"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🫙</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Aceite La Reina</div>
+        <div class="card-desc">Aceite vegetal de soya. Ideal para freír y cocinar.</div>
+        <span class="card-tag">Pomo 900 ml</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/frijoles.jpg" alt="Frijoles negros"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🫘</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Frijoles negros</div>
+        <div class="card-desc">Feijão da Serra. Grano seleccionado.</div>
+        <span class="card-tag">Paquete 1 kg</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/chicharos.jpg" alt="Chícharos verdes"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🟢</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Chícharos verdes</div>
+        <div class="card-desc">Del Campo. Partidos, listos para el potaje.</div>
+        <span class="card-tag">Paquete 1 lb</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/arroz.jpg" alt="Arroz blanco"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🍚</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Arroz blanco</div>
+        <div class="card-desc">Grano premium. Saco grande para toda la familia.</div>
+        <span class="card-tag">Saco 50 lb</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Lácteos y pasta</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/espagueti.jpg" alt="Espagueti"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🍝</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Espagueti</div>
+        <div class="card-desc">Pasta Doğa de calidad. Para toda la semana.</div>
+        <span class="card-tag">Paquete</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/leche.jpg" alt="Leche en polvo"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🥛</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Leche en polvo</div>
+        <div class="card-desc">Entera 26% MG. 1 kg. Para toda la familia.</div>
+        <span class="card-tag">Paquete 1 kg</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap">
+        <img src="img/yogurt.jpg" alt="Yogurt natural"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'font-size:2.5rem;text-align:center\'>🥛</div>'">
+      </div>
+      <div class="card-body">
+        <div class="card-name">Yogurt natural <span class="new-badge">Nuevo</span></div>
+        <div class="card-desc">La Vaquita. Natural, cremoso. 4 litros.</div>
+        <span class="card-tag">Cubo 4 litros</span>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="promise-bar">
+    <div class="promise-item">
+      <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      <div class="promise-title">Productos originales</div>
+      <div class="promise-desc">Todo viene directo de mipymes verificadas</div>
+    </div>
+    <div class="promise-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/><path d="M12 6v6l4 2"/></svg>
+      <div class="promise-title">Entrega rápida</div>
+      <div class="promise-desc">Pedidos atendidos el mismo día</div>
+    </div>
+    <div class="promise-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="promise-title">Cadena de frío</div>
+      <div class="promise-desc">Las carnes siempre bien conservadas</div>
+    </div>
+    <div class="promise-item">
+      <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <div class="promise-title">Pago seguro</div>
+      <div class="promise-desc">Acepto Zelle. Simple y confiable</div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h3>Haz tu pedido ahora</h3>
+    <p>Escríbeme directamente y te preparo tu combo al mejor precio</p>
+    <a href="https://www.facebook.com/profile.php?id=100090217087831" target="_blank" class="cta-btn facebook">
+      <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      Contáctame en Facebook
+    </a>
+    <a href="#" class="cta-btn zelle">
+      <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      Pago por Zelle
+    </a>
+  </div>
+
+  <div class="footer">
+    <p>Camagüey, Cuba &mdash; Todos los precios en USD</p>
+  </div>
+
+</div>
+</body>
+</html>
